@@ -16,11 +16,24 @@
     <servlet-class>ch5.persistentdata.Controller</servlet-class>
     <init-param>
       <param-name>create</param-name>
-      <param-value>true</param-value>
+      <param-value>false</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>PersistentController</servlet-name>
   	<url-pattern>/ch5/persistentdata/Controller</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Task5Controller</servlet-name>
+    <servlet-class>ch5.task5.Controller</servlet-class>
+    <init-param>
+      <param-name>create</param-name>
+      <param-value>false</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Task5Controller</servlet-name>
+  	<url-pattern>/ch5/task5/Controller</url-pattern>
   </servlet-mapping>
 </web-app>

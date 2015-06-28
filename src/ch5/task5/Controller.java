@@ -1,4 +1,4 @@
-package ch5.persistentdata;
+package ch5.task5;
 
 import java.io.IOException;
 

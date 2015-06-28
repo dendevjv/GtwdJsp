@@ -1,4 +1,4 @@
-package ch5.persistentdata;
+package ch5.task5;
 
 import java.util.Properties;
 
@@ -13,7 +13,7 @@ import shared.HibernateHelper;
 import shared.SessionData;
 
 public class ControllerHelper extends HelperBaseCh5 {
-	private RequestDataPersistent data = new RequestDataPersistent();
+	private Person data = new Person();
 
 	public ControllerHelper(HttpServlet servlet, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -36,17 +36,17 @@ public class ControllerHelper extends HelperBaseCh5 {
 		
 		boolean create = Boolean.parseBoolean(servlet.getInitParameter("create"));
 		if (create) {
-			HibernateHelper.createTable(props, RequestDataPersistent.class);
+			HibernateHelper.createTable(props, Person.class);
 		}
 		
-		HibernateHelper.initSessionFactory(props, RequestDataPersistent.class);
+		HibernateHelper.initSessionFactory(props, Person.class);
 	}
 	
-	public RequestDataPersistent getData() {
+	public Person getData() {
 		return data;
 	}
 
-	public void setData(RequestDataPersistent data) {
+	public void setData(Person data) {
 		this.data = data;
 	}
 
@@ -58,7 +58,7 @@ public class ControllerHelper extends HelperBaseCh5 {
 	}
 	
 	protected String jspLocation(String page) {
-        return "/WEB-INF/ch5/persistentdata/" + page;
+        return "/WEB-INF/ch5/task5/" + page;
     }
 	
 	@ButtonMethod(buttonName = "editButton", isDefault = true)

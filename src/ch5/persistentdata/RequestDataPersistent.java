@@ -14,7 +14,9 @@ import shared.PersistentBase;
 public class RequestDataPersistent 
 		extends PersistentBase 
 		implements Serializable {
-	protected String hobby;
+    private static final long serialVersionUID = -642542482526171299L;
+    
+    protected String hobby;
 	protected String aversion;
 	protected int daysPerWeek;
 

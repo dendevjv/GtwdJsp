@@ -17,23 +17,23 @@ import org.hibernate.criterion.Restrictions;
 public class HibernateHelper {
 	static protected Logger log =
             Logger.getLogger("bytesizebook.webdev.hibernate");
-    static protected List<Class> listClasses = new ArrayList<Class>();
+    static protected List<Class<?>> listClasses = new ArrayList<Class<?>>();
     static protected SessionFactory sessionFactory;
     
     static public void initSessionFactory(Properties props,
-            Class... mappings) {
+            Class<?>... mappings) {
         if (addMappings(listClasses, mappings)) {
             closeSessionFactory(sessionFactory);
             sessionFactory = createFactory(props, listClasses);
         }
     }
 
-    static public void initSessionFactory(Class... mappings) {
+    static public void initSessionFactory(Class<?>... mappings) {
         initSessionFactory(null, mappings);
     }
     
-	static public void createTable(Properties props, Class... mappings) {
-        List<Class> tempList = new ArrayList<Class>();
+	static public void createTable(Properties props, Class<?>... mappings) {
+        List<Class<?>> tempList = new ArrayList<Class<?>>();
         SessionFactory tempFactory = null;
 
         addMappings(tempList, mappings);
@@ -45,13 +45,13 @@ public class HibernateHelper {
         closeSessionFactory(tempFactory);
     }
 	
-	static public void createTable(Class... mappings) {
+	static public void createTable(Class<?>... mappings) {
         createTable(null, mappings);
     }
 	
-	static protected boolean addMappings(List<Class> list, Class... mappings) {
+	static protected boolean addMappings(List<Class<?>> list, Class<?>... mappings) {
         boolean bNewClass = false;
-        for (Class mapping : mappings) {
+        for (Class<?> mapping : mappings) {
             if (!list.contains(mapping)) {
                 list.add(mapping);
                 bNewClass = true;
@@ -62,7 +62,7 @@ public class HibernateHelper {
 	
 	static protected SessionFactory createFactory(
             Properties props,
-            List<Class> list) {
+            List<Class<?>> list) {
         SessionFactory factory = null;
         Configuration cfg =
                 new Configuration();
@@ -71,7 +71,7 @@ public class HibernateHelper {
                 cfg.addProperties(props);
             }
             configureFromFile(cfg);
-            for (Class mapping : list) {
+            for (Class<?> mapping : list) {
                 cfg.addAnnotatedClass(mapping);
             }
             factory = buildFactory(cfg);
@@ -103,7 +103,8 @@ public class HibernateHelper {
         }
     }
 	
-	static protected SessionFactory buildFactory(Configuration cfg)
+	@SuppressWarnings("deprecation")
+    static protected SessionFactory buildFactory(Configuration cfg)
             throws Exception {
         SessionFactory factory = null;
         try {
@@ -142,7 +143,7 @@ public class HibernateHelper {
         }
     }
 	
-	static public void updateDB(java.util.List list) {
+	static public void updateDB(java.util.List<Object> list) {
 
         Session session = null;        
         try {
@@ -193,9 +194,10 @@ public class HibernateHelper {
         }
     }
 	
-	static public java.util.List getListData(
-            Class classBean, String strKey, Object value) {
-        java.util.List result = new java.util.ArrayList();
+	@SuppressWarnings("unchecked")
+    static public java.util.List<Object> getListData(
+            Class<?> classBean, String strKey, Object value) {
+        java.util.List<Object> result = new java.util.ArrayList<Object>();
 
         Session session = null;
         try {
@@ -219,13 +221,12 @@ public class HibernateHelper {
         return result;
     }
 	
-	static public java.util.List getListData(
-            Class classBean,
+	@SuppressWarnings("unchecked")
+    static public java.util.List<Object> getListData(
+            Class<?> classBean,
             String strKey1, Object value1,
             String strKey2, Object value2) {
-        java.util.List result = new java.util.ArrayList();
-        boolean withParent = false;
-        int age = 0;
+        java.util.List<Object> result = new java.util.ArrayList<Object>();
         Session session = null;
         try {
             session = sessionFactory.openSession();
@@ -252,8 +253,8 @@ public class HibernateHelper {
         return result;
     }
 	
-	static public java.util.List getListData(
-            Class classBean) {
+	static public java.util.List<Object> getListData(
+            Class<?> classBean) {
         return getListData(classBean, null, null);
     }
 }
