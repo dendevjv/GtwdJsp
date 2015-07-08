@@ -257,4 +257,28 @@ public class HibernateHelper {
             Class<?> classBean) {
         return getListData(classBean, null, null);
     }
+	
+	static public Object getFirstmatch(Class<?> classBean, String strKey, Object value) {
+	    Object result = null;
+	    Session session = null;
+	    try {
+            session = sessionFactory.openSession();
+            Transaction tx = session.beginTransaction();
+
+            Criteria criteria = session.createCriteria(classBean);
+            if (strKey != null) {
+                criteria.add(Restrictions.like(strKey, value));
+            }
+            criteria.setMaxResults(1);
+            result = criteria.uniqueResult();
+
+            tx.commit();
+
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+	    return result;
+	}
 }
