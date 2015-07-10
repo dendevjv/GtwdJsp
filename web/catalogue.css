@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+div.layout {
+    position: relative;
+    float: left;
+    overflow: auto;
+}
+
+div#outer {
+    width: 600px;
+}
+
+div#right {
+    width: 275px;
+    padding: 1%;
+    border-left: thin solid black;
+}
+
+div#left {
+    width: 275px;
+    padding: 1%;
+    text-align: right;
+}
+
+div#bottom {
+    border-top: thin solid black;
+    width: 95%;
+    padding: 1%;
+}
+
+table, td {
+    border: thin solid black;
+}
