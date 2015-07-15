@@ -144,6 +144,25 @@ public class HibernateHelper {
     }
 	
 	static public void updateDB(java.util.List<Object> list) {
+	    
+	    Session session = null;        
+	    try {
+	        session = sessionFactory.openSession();
+	        Transaction tx = session.beginTransaction();
+	        
+	        for (Object obj : list) {
+	            session.saveOrUpdate(obj);
+	        }
+	        
+	        tx.commit();
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	}
+	
+	static public void updateListDB(java.util.List<Object> list) {
 
         Session session = null;        
         try {

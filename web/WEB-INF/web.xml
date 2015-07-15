@@ -10,6 +10,7 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
   <servlet>
     <servlet-name>PersistentController</servlet-name>
     <servlet-class>ch5.persistentdata.Controller</servlet-class>
@@ -22,6 +23,7 @@
     <servlet-name>PersistentController</servlet-name>
     <url-pattern>/ch5/persistentdata/Controller</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>Task5Controller</servlet-name>
     <servlet-class>ch5.task5.Controller</servlet-class>
@@ -34,6 +36,7 @@
     <servlet-name>Task5Controller</servlet-name>
     <url-pattern>/ch5/task5/Controller</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ComplexPersistentController</servlet-name>
     <servlet-class>ch6.complexpersistent.Controller</servlet-class>
@@ -46,6 +49,7 @@
     <servlet-name>ComplexPersistentController</servlet-name>
     <url-pattern>/ch6/complexpersistent/Controller</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>AccountLoginController</servlet-name>
     <servlet-class>ch7.accountlogin.Controller</servlet-class>
@@ -57,5 +61,20 @@
   <servlet-mapping>
     <servlet-name>AccountLoginController</servlet-name>
     <url-pattern>/ch7/accountlogin/Controller</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>Persistent shopping cart with login page.</description>
+    <servlet-name>CataloguePersistent</servlet-name>
+    <servlet-class>ch7.catalogue.persistent.Controller</servlet-class>
+    <init-param>
+      <description>controls if shopping cart table is created</description>
+      <param-name>create</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CataloguePersistent</servlet-name>
+    <url-pattern>/ch7/catalogue/persistent/Controller</url-pattern>
   </servlet-mapping>
 </web-app>
